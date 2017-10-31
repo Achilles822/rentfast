@@ -1,0 +1,24 @@
+<aside class="main-sidebar">
+  <!-- sidebar: style can be found in sidebar.less -->
+  <section class="sidebar">
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu">
+          <li class="header">功能模块</li>
+          <li class="treeview" *ngFor="let item of links" [class.active]="item.link?(item.link[0] === currentUrl):false">
+              <a (click)="nav(item,null)">
+                  <i class="fa fa-{{item.icon}}"></i> <span>{{item.title}}</span>
+                  <span class="pull-right-container" *ngIf="item.sublinks">
+                      <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+              </a>
+              <ul class="treeview-menu" *ngIf="item.sublinks">
+                  <li *ngFor="let subitem of item.sublinks" [class.active]="subitem.link[0] === currentUrl">
+                      <a (click)="nav(item,subitem)"><i class="fa fa-circle-o "></i> {{subitem.title}}</a>
+                  </li>
+              </ul>
+          </li>
+      </ul>
+  </section>
+  <!-- /.sidebar -->
+</aside>
+<div class="control-sidebar-bg "></div>

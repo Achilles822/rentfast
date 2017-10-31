@@ -1,0 +1,6 @@
+{
+    "/xpi": {
+      "target": "http://localhost:3018",
+      "secure": false
+    }
+  }

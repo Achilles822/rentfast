@@ -1,0 +1,13 @@
+<section class="content-header">
+  <h1>
+      {{currentItem? currentItem.title : ""}}
+      <!-- <small>Blank example to the fixed layout</small> -->
+  </h1>
+  <ol class="breadcrumb">
+      <li *ngFor="let item of list">
+          <a>
+              <i *ngIf="item.icon" class="fa fa-{{item.icon}}"></i> {{item.title}}
+          </a>
+      </li>
+  </ol>
+</section>

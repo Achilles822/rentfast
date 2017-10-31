@@ -1,0 +1,11 @@
+<div class="wrapper">
+  <app-header [layoutMode]='layoutMode' [links]='sidebarLinks' [currentUrl]='currentUrl' [nav]='nav' [user]='user'>header...</app-header>
+  <app-sidebar *ngIf="layoutMode=='sidebar'" [layoutMode]='layoutMode' [links]='sidebarLinks' [currentUrl]='currentUrl' [nav]='nav' [user]='user'>sidebar...</app-sidebar>
+  <div class="content-wrapper">
+      <app-breadcrumb>breadcrumb...</app-breadcrumb>
+      <section class="content">
+          <router-outlet></router-outlet>
+      </section>
+  </div>
+  <app-footer>footer...</app-footer>
+</div>

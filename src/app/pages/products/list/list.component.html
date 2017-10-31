@@ -1,0 +1,28 @@
+<div class="box">
+  <div class="box-header">
+    <h3 class="box-title">商品管理</h3>
+    <button class="btn btn-primary pull-right" (click)="editProduct(null)">新增</button>
+    <button class="btn btn-primary pull-right" (click)="addProduct(null)">新增商品</button>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <table id="example1" class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>Rendering engine</th>
+        <th>Browser</th>
+        <th>Platform(s)</th>
+        <th>Engine version</th>
+        <th>CSS grade</th>
+      </tr>
+      </thead>
+      <tbody>
+      </tbody>
+
+    </table>
+  </div>
+  <!-- /.box-body -->
+</div>
+<!-- /.box -->
+<product-edit #edit ></product-edit>
+
