@@ -12,8 +12,16 @@ const routes: Routes = [
     // loadChildren: './pages/login/login.module#LoginModule'
   },
   {
+    path: 'login',
+    loadChildren: './pages/login/login.module#LoginModule'
+  },
+  {
     path: 'products',
     loadChildren: './pages/products/products.module#ProductsModule'
+  },
+  {
+    path: 'houses',
+    loadChildren: './pages/detail/detail.module#DetailModule'
   },
   {
     path: 'pages',
@@ -23,7 +31,19 @@ const routes: Routes = [
       {
         path: 'products',
         loadChildren: './pages/products/products.module#ProductsModule'
-      }
+      },
+      {
+        path: 'accounts',
+        loadChildren: './pages/account/account.module#AccountModule'
+      },
+      {
+        path: 'needs',
+        loadChildren: './pages/need/need.module#NeedModule'
+      },
+      {
+        path: 'apply',
+        loadChildren: './pages/apply/apply.module#ApplyModule'
+      },
 
     ]
   },

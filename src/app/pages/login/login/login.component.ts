@@ -6,14 +6,14 @@ import { HttpClientService } from '../../../services/http-client.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.scss'],
   providers: [LoginService]
 })
 export class LoginComponent implements OnInit {
   public user = {
     username: "",
     password: "",
-    role:""
+    role:"user"
   };
   constructor(
     public router: Router,
@@ -22,11 +22,9 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    window["$"]("body").addClass("login-bg");
   }
   ngAfterViewInit() {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
     window['$']('input').iCheck({
       checkboxClass: 'icheckbox_square-blue',
       radioClass: 'iradio_square-blue',
@@ -56,13 +54,17 @@ export class LoginComponent implements OnInit {
     //   }
     // });
     this.loginService.login(postBody).subscribe(data => {
-      console.log('login test');
       if (data) {
         console.log(data);
         sessionStorage.setItem('token', data.token);
         sessionStorage.setItem('user', JSON.stringify(data.user));
         window['swal']('提示', '登录成功', 'success');
+        if(data.user.role=='user'){
+          this.router.navigateByUrl("");
+        }
+       else{
         this.router.navigateByUrl("pages/products/list");
+       }
       } else {
         console.log('登录失败');
       }

@@ -1,0 +1,75 @@
+<div class="login-box">
+    <div class="login-logo">
+        <a>
+            <span class="iconfont icon-shandian"></span>
+            <h4>一念之间，闪租无限</h4>
+          </a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+      <!-- <p class="login-box-msg">请输入账号密码登录</p> -->
+      <form method="post">
+        <div class="form-group has-feedback">
+          <input type="text" [(ngModel)]='user.username' name="username" class="form-control" placeholder="账号" />
+          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+          <input type="password" class="form-control" placeholder="密码" [(ngModel)]='user.password' name="password" />
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+          <input type="password" class="form-control" placeholder="请确认密码" [(ngModel)]='user.confirmpassword' name="confirmpassword"
+          />
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+          <input type="text" class="form-control" placeholder="邮箱" [(ngModel)]='user.email' name="email" />
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+          <input type="text" class="form-control" placeholder="手机号" [(ngModel)]='user.mobile' name="mobile" />
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+            <input type="text" class="form-control" placeholder="寻租户型" [(ngModel)]='user.house_type' name="house_type" />
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+              <input type="text" class="form-control" placeholder="寻租金额" [(ngModel)]='user.house_rental' name="house_rental" />
+              <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" placeholder="寻租面积" [(ngModel)]='user.house_area' name="house_area" />
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+              </div>
+        <div class="row">
+          <!-- <div class="col-xs-8">
+            <div class="checkbox icheck" style="margin-left:25px;margin-bottom:20px">
+              <label>
+                <input type="checkbox"> 记住我
+              </label>
+            </div>
+          </div> -->
+          <!-- /.col -->
+          <div class="col-xs-4">
+            <div class="form-group" style="display:none">
+              
+  <!--             <p>请选择角色</p>
+              <select class="form-control" name="role" [(ngModel)]='user.role'>
+                <option value="seller" selected="selected">商家</option>
+                <option value="admin">管理员</option>
+              </select> -->
+              <input type="hidden" value="seller" [(ngModel)]='user.role' name="role"/>
+            </div>
+          </div>
+          <!-- /.col -->
+  
+          <button type="button" (click)="doRegister()" class="btn btn-primary btn-md btn-block btn-flat">注册</button>
+  
+        </div>
+      </form>
+      <!-- /.social-auth-links -->
+    </div>
+    <!-- /.login-box-body -->
+  </div>
+  

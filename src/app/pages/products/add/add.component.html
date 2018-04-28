@@ -1,56 +1,172 @@
 <div class="box box-default color-palette-box">
   <div class="box-header with-border">
-    <h3 class="box-title"><i class="fa fa-tag"></i>新增商品</h3>
+    <h3 class="box-title">
+      <i class="fa fa-tag"></i>发布房源</h3>
   </div>
   <div class="box-body">
     <div class="row">
       <!-- 商家填写信息：商品名称、单价、分类、数量、上架 -->
       <form class="form-horizontal">
+
         <div class="form-group" style="margin-top:30px">
-          <label class="col-lg-2 text-right">商品名称</label>
-          <div class="col-lg-3">
-            <input class="form-control form-fields" name="productName" [(ngModel)]="product.productName" type="text" value="产品名称">
-          </div>
-          <label class="col-lg-2 text-right">单价</label>
-          <div class="col-lg-3">
-            <input class="form-control form-fields" name="productPrice" [(ngModel)]="product.productPrice" type="number" value="单价">
+          <label class="col-lg-2 text-right">标题</label>
+          <div class="col-lg-8">
+            <input class="form-control form-fields" name="house_title" [(ngModel)]="houseInfo.house_title" type="text" value="">
           </div>
         </div>
-        <div class="form-group" style="margin-top:30px">
-          <label class="col-lg-2 text-right">分类</label>
+        <div class="form-group">
+          <label class="col-lg-2 text-right">房东名字</label>
           <div class="col-lg-3">
-            <select class="form-control" name="productType" [(ngModel)]="product.productType">
-                                      <option value="蔬菜">蔬菜</option>
-                                      <option value="水果">水果</option>
-                                  </select>
+            <input class="form-control form-fields" name="house_landlord" [(ngModel)]="houseInfo.house_landlord" type="text" value="">
           </div>
-          <label class="col-lg-2 text-right">数量</label>
+          <label class="col-lg-2 text-right">房东联系电话</label>
           <div class="col-lg-3">
-            <input class="form-control form-fields" name="productCount" [(ngModel)]="product.productCount" type="number" value="数量">
+            <input class="form-control form-fields" name="house_phone_number" [(ngModel)]="houseInfo.house_phone_number" type="number"
+              value="">
           </div>
         </div>
-        <div class="form-group" style="margin-top:30px">
-            <label class="col-lg-2 text-right">上架</label>
-            <div class="col-lg-3">
-              <select class="form-control" name="productStatus" [(ngModel)]="product.productStatus">
-                                        <option value="是">是</option>
-                                        <option value="否">否</option>
-                                    </select>
-            </div>
-            <label class="col-lg-2 text-right">上传照片</label>
-            <!-- <div class="col-lg-3">
+        <div class="form-group">
+          <label class="col-lg-2 text-right">租金</label>
+          <div class="col-lg-3">
+            <input class="form-control form-fields" name="house_rental" [(ngModel)]="houseInfo.house_rental" type="number" value="">
+          </div>
+          <label class="col-lg-2 text-right">建筑面积</label>
+          <div class="col-lg-3">
+            <input class="form-control form-fields" name="house_area" [(ngModel)]="houseInfo.house_area" type="number" value="">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 text-right">所在国家</label>
+          <div class="col-lg-3">
+            <input class="form-control form-fields" name="house_country" [(ngModel)]="houseInfo.house_country" type="text" value="">
+          </div>
+          <label class="col-lg-2 text-right">所在省份</label>
+          <div class="col-lg-3">
+            <input class="form-control form-fields" name="house_province" [(ngModel)]="houseInfo.house_province" type="text" value="">
+          </div>
+          <!--  <label class="col-lg-2 text-right">上传照片</label> -->
+          <!-- <div class="col-lg-3">
                 <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
             </div> -->
         </div>
-     
-        <button (click)="addProduct()" class="btn btn-primary col-md-offset-5 col-xs-offset-5" type="submit">保存</button>
+        <div class="form-group">
+          <label class="col-lg-2 text-right">所在市</label>
+          <div class="col-lg-3">
+            <input class="form-control form-fields" name="house_city" [(ngModel)]="houseInfo.house_city" type="text" value="">
+          </div>
+          <label class="col-lg-2 text-right">所在区</label>
+          <div class="col-lg-3">
+            <!-- <input class="form-control form-fields" name="house_block" [(ngModel)]="houseInfo.house_block" type="text" value=""> -->
+          <select name="house_block" [(ngModel)]="houseInfo.house_block">
+            <option value="天河">天河</option>
+            <option value="海珠">海珠</option>
+            <option value="越秀">越秀</option>
+            <option value="白云">白云</option>
+            <option value="荔湾">荔湾</option>
+            <option value="番禺">番禺</option>
+            <option value="黄埔">黄埔</option>
+            <option value="花都">花都</option>
+            <option value="增城">增城</option>
+            <option value="萝岗">萝岗</option>
+            <option value="佛山">佛山</option>
+            <option value="从化">从化</option>
+          </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 text-right">所在楼盘</label>
+          <div class="col-lg-3">
+            <input class="form-control form-fields" name="house_houses" [(ngModel)]="houseInfo.house_houses" type="text" value="">
+          </div>
+          <label class="col-lg-2 text-right">租赁客户</label>
+          <div class="col-lg-3">
+            <input class="form-control form-fields" name="house_tenant" [(ngModel)]="houseInfo.house_tenant" type="text" value="">
+
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-1 text-right col-lg-offset-1">房屋类型</label>
+          <div class="col-lg-1 col-lg-offset-2">
+            <input class="form-control" name="house_room" [(ngModel)]="houseInfo.house_room" type="number" value="">
+          </div>
+          <label class="col-lg-1 text-rght ">房</label>
+
+          <div class="col-lg-1">
+            <input class="form-control" name="house_hall" [(ngModel)]="houseInfo.house_hall" type="number" value="">
+          </div>
+          <label class="col-lg-1 text-rght ">厅</label>
+          <div class="col-lg-1">
+            <input class="form-control" name="house_bathroom" [(ngModel)]="houseInfo.house_bathroom" type="number" value="">
+          </div>
+          <label class="col-lg-1 text-rght ">卫</label>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 text-right">成交租金</label>
+          <div class="col-lg-3">
+            <input class="form-control form-fields" name="house_final_rental" [(ngModel)]="houseInfo.house_final_rental" type="number"
+              value="">
+          </div>
+          <label class="col-lg-2 text-right">租期</label>
+          <div class="col-lg-3">
+            <input class="form-control form-fields" name="house_tenancy" [(ngModel)]="houseInfo.house_tenancy" type="text" value="">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 text-right">完成人</label>
+          <div class="col-lg-3">
+            <input class="form-control form-fields" name="house_achievement" [(ngModel)]="houseInfo.house_achievement" type="text" value="">
+          </div>
+          <label class="col-lg-2 text-right">房源朝向</label>
+          <div class="col-lg-3">
+            <select class="form-control" name="house_direction" [(ngModel)]="houseInfo.house_direction">
+              <option value="东">东</option>
+              <option value="南">南</option>
+              <option value="西">西</option>
+              <option value="北">北</option>
+              <option value="南北">南北</option>
+              <option value="东西">东西</option>
+              <option value="东南">东南</option>
+              <option value="西南">西南</option>
+              <option value="东北">东北</option>
+              <option value="西北">西北</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 text-right">装修</label>
+            <div class="col-lg-3">
+              <select class="form-control" name="house_fitment" [(ngModel)]="houseInfo.house_fitment">
+                <option value="毛胚">毛胚</option>
+                <option value="简单装修">简单装修</option>
+                <option value="中等装修">中等装修</option>
+                <option value="精装修">精装修</option>
+                <option value="豪华装修">豪华装修</option>
+              </select>
+            </div>
+          <label class="col-lg-2 text-right">是否已出租</label>
+          <div class="col-lg-3">
+            <select class="form-control" name="house_for_rent" [(ngModel)]="houseInfo.house_for_rent">
+              <option value="0">否</option>
+              <option value="1">是</option>
+            </select>
+          </div>
+        </div>
+        <quill-editor [style]="{height: '200px'}" [(ngModel)]="houseInfo.house_description" name="house_description" ></quill-editor>
+        <label class="col-lg-2 text-right">上传照片</label>
+       <div class="input-group">
+        <input type="file" multiple name="product_photo" id="uploadFile" (change)="setFile($event.target.files)">
+        <button type="button" (click)="uploadFile()">上传附件</button>
+       </div>
+
+
+        <button *ngIf="operate=='add'" (click)="addHouse()" class="btn btn-primary col-md-offset-5 col-xs-offset-5" type="submit">保存</button>
+        <button *ngIf="operate=='edit'" (click)="editHouse()" class="btn btn-primary col-md-offset-5 col-xs-offset-5" type="submit">修改并保存</button>
       </form>
-          <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
-          <button type="button" class="btn btn-success btn-s"
-          (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
-      <span class="glyphicon glyphicon-upload"></span> Upload all
-  </button>
-          <input type="submit" value="保存"/>
+      <!-- <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
+      <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+        <span class="glyphicon glyphicon-upload"></span> Upload all
+      </button> -->
+      <!-- <input type="submit" value="保存" /> -->
     </div>
   </div>
 </div>

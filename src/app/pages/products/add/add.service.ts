@@ -8,8 +8,18 @@ export class ProductAddService {
     public httpClient: HttpClientService
   ) { }
 
-  list(postBody){
-    // /addNewTest
-    return this.httpClient.post('/api/v1/products/base/admin/add',postBody);
+  // 添加房源
+  add(postBody,options){
+    return this.httpClient.post('/api/v1/houses/add',postBody,options);
+  }
+
+  // 编辑房源
+  edit(postbody){
+    return this.httpClient.post('/api/v1/houses/base/admin/edit',postbody);
+  }
+
+  // 获取信息
+  list(postbody){
+    return this.httpClient.post('/api/v1/houses/list',postbody);
   }
 }

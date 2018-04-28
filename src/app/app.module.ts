@@ -15,6 +15,12 @@ import { AppHeaderComponent } from './widgets/header/header.component';
 import { AppFooterComponent } from './widgets/footer/footer.component';
 import { AppBreadcrumbComponent } from './widgets/breadcrumb/breadcrumb.component';
 import { HttpClientService } from './services/http-client.service';
+import { QuillModule } from 'ngx-quill';
+// import {KSSwiperModule} from "angular2-swiper";
+import { NgxCarouselModule } from 'ngx-carousel';
+import 'hammerjs';
+
+// import {BypassSecurityTrustHtmlPipe} from './services/dom.pipe';
 // import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload/ng2-file-upload';
 /**
  * [authHttpServiceFactory 定义存储token的位置和名称]
@@ -44,6 +50,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     AppHeaderComponent,
     AppFooterComponent,
     AppBreadcrumbComponent,
+    
 
   ],
   imports: [
@@ -51,7 +58,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     AppRoutingModule,
     FormsModule,
     HttpModule,
-
+    QuillModule,
+    NgxCarouselModule
   ],
   providers: [{
     provide: AuthHttp,

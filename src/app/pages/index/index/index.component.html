@@ -7,19 +7,25 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">RENTFAST</a>
+      <a class="navbar-brand" href="#">闪租</a>
     </div>
     <div class="collapse navbar-collapse" id="example-navbar-collapse">
       <ul class="nav navbar-nav">
         <li class="active">
-          <a href="#">登录</a>
+          <a *ngIf="user.username==''" href="/login">登录</a>
+          <a *ngIf="user.username!==''">您好，{{user.username}}</a>
         </li>
         <li>
-          <a href="#">注册</a>
+          <a (click)="logOut()" *ngIf="user.username!==''" href="/login/">退出</a>
+          <a *ngIf="user.username==''" href="/login/register">注册</a>
         </li>
         <li>
-          <a href="#"><span class="btn-free-publish">免费发布</span></a>
+            <a *ngIf="user.role!=='user'&&user.username!==''" href="/pages/products/list">管理</a>
+          </li>
+        <li>
+          <a (click)="showFabu()"><span class="btn-free-publish">免费发布</span></a>
         </li>
+       
       </ul>
     </div>
   </div>
@@ -39,23 +45,23 @@
         <div class="item active">
           <img src="../../../../assets/images/gltokyo.jpg" alt="First slide">
 
-          <div class="carousel-caption">
+          <!-- <div class="carousel-caption">
             First Slide
-          </div>
+          </div> -->
         </div>
         <div class="item">
           <img src="../../../../assets/images/gltokyo.jpg" alt="Second slide">
 
-          <div class="carousel-caption">
+          <!-- <div class="carousel-caption">
             Second Slide
-          </div>
+          </div> -->
         </div>
         <div class="item">
           <img src="../../../../assets/images/gltokyo.jpg" alt="Third slide">
 
-          <div class="carousel-caption">
+          <!-- <div class="carousel-caption">
             Third Slide
-          </div>
+          </div> -->
         </div>
       </div>
       <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
@@ -70,14 +76,14 @@
     <!-- /.row -->
     <div style="display:flex;justify-content:center;align-items:center">
       <div class="input-group col-md-6 col-md-offset-0" style="margin-top:0px;top:35%;position:absolute">
-        <input type="text" class="form-control" placeholder="请输入关键字" />
+        <input type="text" class="form-control" placeholder="请输入关键字" name="search_key" [(ngModel)]="searchkey"/>
         <span class="input-group-btn">
           <button style="width:130px" class="btn btn-info btn-search btn-block btn-flat" (click)="showResult()">搜索</button>
           <!-- <button class="btn btn-info btn-search" style="margin-left:3px">添加</button> -->
         </span>
       </div>
-
     </div>
+    
     <div class="container">
       <div class="row">
         <div class="col-md-4">
@@ -90,7 +96,7 @@
           </div>
           <div class="col-md-6">
             <img src="../../../../assets/images/index-02.jpg" alt="..." class="img-thumbnail">
-            <p class="text-center zone-title">天河区</p>
+            <p class="text-center zone-title">越秀区</p>
           </div>
         </div>
         <div class="col-md-4">
@@ -100,11 +106,11 @@
           </div>
           <div class="col-md-6">
             <img src="../../../../assets/images/index-03.jpg" alt="..." class="img-thumbnail">
-            <p class="text-center zone-title">天河区</p>
+            <p class="text-center zone-title">番禺区</p>
           </div>
           <div class="col-md-6">
             <img src="../../../../assets/images/index-04.jpg" alt="..." class="img-thumbnail">
-            <p class="text-center zone-title">天河区</p>
+            <p class="text-center zone-title">海珠区</p>
           </div>
         </div>
         <div class="col-md-4">
@@ -113,16 +119,55 @@
           </div>
           <div class="col-md-6">
             <img src="../../../../assets/images/index-05.jpg" alt="..." class="img-thumbnail">
-            <p class="text-center zone-title">天河区</p>
+            <p class="text-center zone-title">白云区</p>
           </div>
           <div class="col-md-6">
             <img src="../../../../assets/images/index-06.jpg" alt="..." class="img-thumbnail">
-            <p class="text-center zone-title">天河区</p>
+            <p class="text-center zone-title">萝岗区</p>
           </div>
         </div>
-        <footer class="footer">
-          这是脚步
-        </footer>
+  
       </div>
+
+      <div class="footer">
+          <div class="container">
+            <div class="row">
+              <hr class="divider">
+              <div class="col-md-3"></div>
+              <div class="col-md-6 text-center" style="margin-top:50px;">
+                  Copyright © 2018 颜梓煜. All rights reserved.
+              </div>
+              <div class="col-md-3"></div>
+            </div>
+          </div>
+        </div>
       <!-- row end  -->
     </div>
+
+
+
+    <!-- 免费发布modal -->
+    <div class="modal fabu-modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title text-center">提示</h4>
+            </div>
+            <div class="modal-body">
+            <p>
+              您当前为普通用户，如果要发布房源，请进行身份验证，待管理员审核后方可发布。点击确定按钮进行信息填写。
+            </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
+              <button (click)="goToTip()" type="button" class="btn btn-primary">确定</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+    <!-- 免费发布modal end -->

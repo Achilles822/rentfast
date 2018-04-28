@@ -1,51 +1,58 @@
-
 <div class="login-box">
   <div class="login-logo">
-      <a><b>蔬果</b>商城</a>
+    <a>
+      <span class="iconfont icon-shandian"></span>
+      <h4>一念之间，闪租无限</h4>
+    </a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-      <p class="login-box-msg">请输入账号密码登录</p>
-      <form method="post">
-          <div class="form-group has-feedback">
-              <input type="text" [(ngModel)]='user.username' name="username" class="form-control" placeholder="账号" />
-              <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-          </div>
-          <div class="form-group has-feedback">
-              <input type="password" class="form-control" (keyup.enter)="login()" placeholder="密码" [(ngModel)]='user.password' name="password" />
-              <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-              <!-- <div class="form-group">
+    <!-- <p class="login-box-msg">请输入账号密码登录</p> -->
+    <form method="post">
+      <div class="form-group has-feedback">
+        <input type="text" [(ngModel)]='user.username' name="username" class="form-control" placeholder="账号" />
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" class="form-control" (keyup.enter)="login()" placeholder="密码" [(ngModel)]='user.password' name="password"
+        />
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        <!-- <div class="form-group">
                 <label>Select</label>
                 <select class="form-control">
                   <option>商家</option>
                   <option>管理员</option>
                 </select>
               </div> -->
+      </div>
+      <div class="row">
+        <div class="col-xs-8">
+          <div class="checkbox icheck">
+            <label>
+              <input type="checkbox"> 记住我
+            </label>
           </div>
-          <div class="row">
-              <div class="col-xs-8">
-                  <div class="checkbox icheck">
-                      <label>
-                          <input type="checkbox"> 记住我
-                      </label>
-                  </div>
-              </div>
-              <!-- /.col -->
-              <div class="col-xs-4">
-                    <div class="form-group">     
-                            <select class="form-control" name="role" [(ngModel)]='user.role'>
-                              <option value="seller" selected="selected">商家</option>
-                              <option value="admin">管理员</option>
-                            </select>
-                          </div>
-                  <!-- <button type="button"  (click)="login()" class="btn btn-primary btn-block btn-flat">登录</button> -->
-              </div>
-              <!-- /.col -->
-              <button type="button"  (click)="login()" class="btn btn-primary btn-md btn-block btn-flat">登录</button>
-              
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <div class="form-group">
+            <select class="form-control" name="role" [(ngModel)]='user.role'>
+              <option value="user">用户</option>
+              <option value="landlord">房东</option>
+              <option value="admin">管理员</option>
+            </select>
           </div>
-      </form>
-      <!-- /.social-auth-links -->
+          <!-- <button type="button"  (click)="login()" class="btn btn-primary btn-block btn-flat">登录</button> -->
+        </div>
+        <!-- /.col -->
+        <div class="register">
+            <a  href="/login/register">还没有账号？点我注册一个！</a>
+          </div>
+        <button type="button" (click)="login()" class="btn btn-primary btn-md btn-block btn-flat">登录</button>
+
+      </div>
+    </form>
+    <!-- /.social-auth-links -->
   </div>
   <!-- /.login-box-body -->
 </div>

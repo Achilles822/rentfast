@@ -1,28 +1,110 @@
 <div class="box">
   <div class="box-header">
-    <h3 class="box-title">商品管理</h3>
-    <button class="btn btn-primary pull-right" (click)="editProduct(null)">新增</button>
-    <button class="btn btn-primary pull-right" (click)="addProduct(null)">新增商品</button>
+    <h3 class="box-title">房源管理</h3>
+    <!-- <button class="btn btn-primary pull-right" (click)="editProduct(null)">新增</button> -->
+    <button class="btn btn-primary pull-right" (click)="addProduct(null)">新增房源</button>
   </div>
   <!-- /.box-header -->
   <div class="box-body">
-    <table id="example1" class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped">
       <thead>
-      <tr>
-        <th>Rendering engine</th>
-        <th>Browser</th>
-        <th>Platform(s)</th>
-        <th>Engine version</th>
-        <th>CSS grade</th>
-      </tr>
+        <tr>
+          <th>标题</th>
+          <th>房东</th>
+          <th>添加时间</th>
+          <th>是否在租</th>
+          <th>操作</th>
+        </tr>
       </thead>
       <tbody>
+        <tr *ngFor="let item of houseList">
+          <td>{{item.house_title}}</td>
+          <td>{{item.house_landlord}}</td>
+          <td>{{item.createdAt}}</td>
+          <td>
+            <span *ngIf="item.house_for_rent==0">是</span>
+            <span *ngIf="item.house_for_rent==1">否</span>
+          </td>
+          <td>
+            <button (click)="editHouse(item)" class="btn btn-default">编辑</button>
+            <button (click)="showWill(item)" class="btn btn-default">意向用户查看</button>
+            <button *ngIf="item.house_is_check==0&&user.role=='admin'" (click)="shenHe(item)" class="btn btn-primary">审核</button>
+            <button *ngIf="item.house_is_check==1&&user.role=='admin'" class="btn btn-default">已审核</button>
+            <button (click)="delHouse(item)" class="btn btn-danger">删除</button>
+          </td>
+        </tr>
       </tbody>
 
     </table>
+    <div class="box-footer clearfix">
+      <p class="pull-left">共{{pageData.total}}个 每页
+        <select [(ngModel)]="pageSize" (ngModelChange)="loadList(1)">
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="30">30</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select> 个</p>
+      <ul class="pagination pagination-sm no-margin pull-right">
+        <li (click)="changePage('pre',null)">
+          <a>
+            上一页
+          </a>
+        </li>
+        <li *ngFor="let item of pages" (click)="changePage('page',item+1)" [class.active]="pageIndex === item+1">
+          <a>
+            {{item+1}}
+          </a>
+        </li>
+        <li (click)="changePage('next',null)">
+          <a>
+            下一页
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
   <!-- /.box-body -->
 </div>
 <!-- /.box -->
-<product-edit #edit ></product-edit>
 
+
+
+<!-- 查看意向modal -->
+<div class="modal yixiang-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">意向用户</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped table-bordered">
+          <tr>
+            <th>用户名</th>
+            <th>手机</th>
+            <th>邮箱</th>
+            <th>意向租金</th>
+          </tr>
+          <tr *ngFor="let item of willData">
+            <td>{{item.username}}</td>
+            <td>{{item.mobile}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.want_rental}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- 查看意向modal  end-->

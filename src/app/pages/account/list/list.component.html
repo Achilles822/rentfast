@@ -1,0 +1,116 @@
+<div class="box">
+  <div class="box-header">
+    <h3 class="box-title">账户管理</h3>
+    <!-- <button class="btn btn-primary pull-right" (click)="editProduct(null)">新增</button> -->
+    <button class="btn btn-primary pull-right" (click)="showUserModal()">添加用户</button>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>用户名</th>
+        <th>邮箱</th>
+        <th>手机号码</th>
+        <th>身份</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of userList">
+          <td>{{item.user_name}}</td>
+          <td>{{item.email}}</td>
+          <td>{{item.mobile}}</td>
+          <td>{{item.role}}</td>
+          <td>
+            <!-- <button class="btn btn-primary">审核</button> -->
+            <button (click)="delUser(item)" class="btn btn-danger">删除</button>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+    <div class="box-footer clearfix">
+        <p class="pull-left">共{{total}}个 每页
+            <select [(ngModel)]="pageSize" (ngModelChange)="loadList(1)">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select> 个</p>
+        <ul class="pagination pagination-sm no-margin pull-right">
+            <li (click)="changePage('pre',null)">
+                <a>
+                上一页
+                </a>
+            </li>
+            <li *ngFor="let item of pages" (click)="changePage('page',item+1)" [class.active]="pageIndex === item+1">
+                <a>
+                {{item+1}}
+                </a>
+            </li>
+            <li (click)="changePage('next',null)">
+                <a>
+                下一页
+                </a>
+            </li>
+        </ul>
+    </div>
+  </div>
+  <!-- /.box-body -->
+</div>
+<!-- /.box -->
+
+
+
+
+<div class="modal modal-add-user">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">添加用户</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <!-- 
+                  // "username":"ziyu111",
+    // "password":"111",
+    // "email":"lyuno@vip.qq.com",
+    // "mobile":"15914303568",
+    // "role":"user"
+             -->
+              <label class="col-lg-2 text-right">用户名</label>
+              <div class="col-lg-3">
+                <input class="form-control form-fields" name="username" [(ngModel)]="userInfo.username" type="text">
+              </div>
+              <label class="col-lg-2 text-right">密码</label>
+              <div class="col-lg-3">
+                <input class="form-control form-fields" name="password" [(ngModel)]="userInfo.password" type="text">
+              </div>
+          </div>
+          <div class="form-group">
+                <label class="col-lg-2 text-right">邮件</label>
+                <div class="col-lg-3">
+                  <input class="form-control form-fields" name="email" [(ngModel)]="userInfo.email" type="text">
+                </div>
+                <label class="col-lg-2 text-right">手机号码</label>
+                <div class="col-lg-3">
+                  <input class="form-control form-fields" name="mobile" [(ngModel)]="userInfo.mobile" type="text">
+                </div>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
+        <button (click)="addUser()" type="button" class="btn btn-primary">保存</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

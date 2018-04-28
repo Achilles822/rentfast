@@ -1,165 +1,337 @@
-<nav class="navbar navbar-fixed-top my-navbar" role="navigation">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
-        <span class="sr-only">切换导航</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">RENTFAST</a>
+<div>
+  <nav class="navbar navbar-fixed-top my-navbar" role="navigation">
+    <div class="container-fluid" style="padding:0">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
+          <span class="sr-only">切换导航</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">闪租</a>
+      </div>
+      <div style="background-color:#a90000;color:aliceblue" class="collapse navbar-collapse" id="example-navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active">
+            <a *ngIf="user.username==''" href="/login">登录</a>
+            <a *ngIf="user.username!==''">您好，{{user.username}}</a>
+          </li>
+          <li>
+            <a (click)="logOut()" *ngIf="user.username!==''" href="/login/">退出</a>
+            <a *ngIf="user.username==''" href="/login/register">注册</a>
+          </li>
+          <li>
+            <a (click)="showFabu()"><span class="btn-free-publish">免费发布</span></a>
+          </li>
+          <li>
+            <a *ngIf="user.role=='landlord'||user.role=='admin'" href="/pages/products/list">管理</a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="collapse navbar-collapse" id="example-navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li class="active">
-          <a href="#">登录</a>
-        </li>
-        <li>
-          <a href="#">注册</a>
-        </li>
-        <li>
-          <a href="#"><span class="btn-free-publish">免费发布</span></a>
-        </li>
-      </ul>
-    </div>
+  </nav>
+</div>
+<div style="display:flex;justify-content:center;align-items:center">
+  <div class="input-group col-md-6 col-md-offset-0" style="top:10%;position:absolute">
+    <input type="text" class="form-control" [placeholder]="searchkey" name="searchkey" [(ngModel)]="searchkey" />
+    <span class="input-group-btn">
+      <button style="width:130px" class="btn btn-info btn-search btn-block btn-flat" (click)="loadlist()">搜索</button>
+      <!-- <button class="btn btn-info btn-search" style="margin-left:3px">添加</button> -->
+    </span>
   </div>
-</nav>
 
-  <div class="search_bd">
-    <!--区域展示start-->
-    <dl class="secitem secitem_fist">
-      <dd>
-        <a href="/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" class='select' onClick="clickLog('from=fcpc_list_gz_quyu_buxian')">不限</a>
-        <a href="/tianhe/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_tianhe')">天河</a>
-        <a href="/haizhu/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_haizhu')">海珠</a>
-        <a href="/yuexiu/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_yuexiu')">越秀</a>
-        <a href="/hengligz/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_hengligz')">横沥</a>
-        <a href="/baiyun/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_baiyun')">白云</a>
-        <a href="/liwan/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_liwan')">荔湾</a>
-        <a href="/panyu/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_panyu')">番禺</a>
-        <a href="/huangpugz/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_huangpugz')">黄埔</a>
-        <a href="/huadugz/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_huadugz')">花都</a>
-        <a href="/zengcheng/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_zengcheng')">增城</a>
-        <a href="/luoganggz/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_luoganggz')">萝岗</a>
-        <a href="/dongguanqu/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_dongguanqu')">东莞</a>
-        <a href="/foshanqu/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_foshanqu')">佛山</a>
-        <a href="/conghua/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_conghua')">从化</a>
-        <a href="/nanshagz/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_nanshagz')">南沙</a>
-        <a href="/jingjikaifaqu/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_jingjikaifaqu')">经济开发区</a>
-        <a href="/guangzhouzhoubian/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_guangzhouzhoubian')">广州周边</a>
-        <a href="/conghuazhoubian/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_conghuazhoubian')">从化周边</a>
-        <a href="/nanshazhoubian/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_nanshazhoubian')">南沙周边</a>
-      </dd>
-    </dl>
-    <!--区域展示end-->
+</div>
+<div class="search_bd" style="margin-top:120px;padding-left:40px;margin-bottom:200px;">
+  <!--区域展示start-->
+  <dl class="secitem secitem_fist">
+    <dd>
+      <a *ngFor="let item of blockData" (click)="searchConditions(null, null, null, null, item,null)">{{item}}</a>
+      <!-- <a href="/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" class='select' onClick="clickLog('from=fcpc_list_gz_quyu_buxian')">不限</a>
+      <a href="/tianhe/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_tianhe')">天河</a>
+      <a href="/haizhu/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_haizhu')">海珠</a>
+      <a href="/yuexiu/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_yuexiu')">越秀</a>
+      <a href="/hengligz/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_hengligz')">横沥</a>
+      <a href="/baiyun/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_baiyun')">白云</a>
+      <a href="/liwan/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_liwan')">荔湾</a>
+      <a href="/panyu/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_panyu')">番禺</a>
+      <a href="/huangpugz/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_huangpugz')">黄埔</a>
+      <a href="/huadugz/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_huadugz')">花都</a>
+      <a href="/zengcheng/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_zengcheng')">增城</a>
+      <a href="/luoganggz/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_luoganggz')">萝岗</a>
+      <a href="/dongguanqu/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_dongguanqu')">东莞</a>
+      <a href="/foshanqu/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_foshanqu')">佛山</a>
+      <a href="/conghua/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_conghua')">从化</a>
+      <a href="/nanshagz/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_nanshagz')">南沙</a>
+      <a href="/jingjikaifaqu/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_jingjikaifaqu')">经济开发区</a>
+      <a href="/guangzhouzhoubian/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_guangzhouzhoubian')">广州周边</a>
+      <a href="/conghuazhoubian/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_conghuazhoubian')">从化周边</a>
+      <a href="/nanshazhoubian/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_quyu_nanshazhoubian')">南沙周边</a> -->
+    </dd>
+  </dl>
+  <!--区域展示end-->
 
-    <!--地铁展示start-->
-    <!--地铁展示end-->
+  <!-- 筛选条件 -->
 
-    <!-- 筛选条件 -->
-
-    <!-- 租金 -->
-    <dl id="secitem-rent" class="secitem">
-      <dt class="fl">租金：</dt>
-      <dd>
-        <a href="/chuzu/?final=3&searchtype=1&key=%e5%a4%a9%e6%b2%b3" class='select' onClick="clickLog('from=fcpc_list_gz_Zujin_')">不限</a>
-        <a href="/chuzu/b8/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_Zujin_0_600')">600元以下</a>
-        <a href="/chuzu/b9/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_Zujin_600_1000')">600-1000元</a>
-        <a href="/chuzu/b10/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_Zujin_1000_1500')">1000-1500元</a>
-        <a href="/chuzu/b11/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_Zujin_1500_2000')">1500-2000元</a>
-        <a href="/chuzu/b12/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_Zujin_2000_3000')">2000-3000元</a>
-        <a href="/chuzu/b13/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_Zujin_3000_5000')">3000-5000元</a>
-        <a href="/chuzu/b14/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_Zujin_5000_8000')">5000-8000元</a>
-        <a href="/chuzu/b15/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_Zujin_8000_9999999')">8000元以上</a>
-        <span class="prifilter">
-          <span class="text">
-            <input type="text" para="minprice" muti="1" min="0" max="999999" name="b_q" autocomplete="off">
-          </span>
-          <span class="dev"> - </span>
-          <span class="text">
-            <input type="text" para="minprice" muti="1" min="0" max="999999" name="b_q" autocomplete="off">
-          </span>
-          <span class="dev">元</span>
-          <span class="shaixuanbtn none">
-            <a rel='nofollow' href="javascript:;" onClick="clickLog('from=fcpc_list_gz_Zujin_shaixuan')">价格筛选</a>
-          </span>
+  <!-- 租金 -->
+  <dl id="secitem-rent" class="secitem">
+    <dt class="fl">租金：</dt>
+    <dd>
+      <a *ngFor="let item of rentalData" (click)="searchConditions(item.start, item.end, null, null, null,null)">{{item.start}}-{{item.end}}元
+      </a>
+      <!-- <a href="/chuzu/?final=3&searchtype=1&key=%e5%a4%a9%e6%b2%b3" class='select' onClick="clickLog('from=fcpc_list_gz_Zujin_')">不限</a>
+      <a href="/chuzu/b8/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_Zujin_0_600')">600元以下</a>
+      <a href="/chuzu/b9/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_Zujin_600_1000')">600-1000元</a>
+      <a href="/chuzu/b10/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_Zujin_1000_1500')">1000-1500元</a>
+      <a href="/chuzu/b11/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_Zujin_1500_2000')">1500-2000元</a>
+      <a href="/chuzu/b12/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_Zujin_2000_3000')">2000-3000元</a>
+      <a href="/chuzu/b13/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_Zujin_3000_5000')">3000-5000元</a>
+      <a href="/chuzu/b14/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_Zujin_5000_8000')">5000-8000元</a>
+      <a href="/chuzu/b15/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_Zujin_8000_9999999')">8000元以上</a> -->
+      <!-- <span class="prifilter">
+        <span class="text">
+          <input type="text" para="minprice" muti="1" min="0" max="999999" name="b_q" autocomplete="off">
         </span>
-      </dd>
-    </dl>
+        <span class="dev"> - </span>
+        <span class="text">
+          <input type="text" para="minprice" muti="1" min="0" max="999999" name="b_q" autocomplete="off">
+        </span>
+        <span class="dev">元</span>
+        <span class="shaixuanbtn none">
+          <a rel='nofollow' href="javascript:;" onClick="clickLog('from=fcpc_list_gz_Zujin_shaixuan')">价格筛选</a>
+        </span>
+      </span> -->
+    </dd>
+  </dl>
 
-    <!-- 厅室 -->
-    <dl class="secitem">
-      <dt>厅室：</dt>
-      <dd id="secitem-room">
-        <a rel='nofollow' href="/chuzu/?final=3&searchtype=1&key=%e5%a4%a9%e6%b2%b3" class='select' onClick="clickLog('from=fcpc_list_gz_Tingshi_')">不限</a>
-        <a rel='nofollow' href="/chuzu/j1/?final=3&key=%e5%a4%a9%e6%b2%b3" onClick="clickLog('from=fcpc_list_gz_Tingshi_j1')">一室</a>
-        <a rel='nofollow' href="/chuzu/j2/?final=3&key=%e5%a4%a9%e6%b2%b3" onClick="clickLog('from=fcpc_list_gz_Tingshi_j2')">两室</a>
-        <a rel='nofollow' href="/chuzu/j3/?final=3&key=%e5%a4%a9%e6%b2%b3" onClick="clickLog('from=fcpc_list_gz_Tingshi_j3')">三室</a>
-        <a rel='nofollow' href="/chuzu/j4/?final=3&key=%e5%a4%a9%e6%b2%b3" onClick="clickLog('from=fcpc_list_gz_Tingshi_j4')">四室</a>
-        <a rel='nofollow' href="/chuzu/j5/?final=3&key=%e5%a4%a9%e6%b2%b3" onClick="clickLog('from=fcpc_list_gz_Tingshi_j5')">四室以上</a>
-      </dd>
-    </dl>
+  <!-- 厅室 -->
+  <dl class="secitem">
+    <dt>厅室：</dt>
+    <dd id="secitem-room">
+      <a *ngFor="let item of roomData" (click)="searchConditions(null,null,null, null, null,item.data)">{{item.list}}</a>
+      <!-- <a rel='nofollow' href="/chuzu/?final=3&searchtype=1&key=%e5%a4%a9%e6%b2%b3" class='select' onClick="clickLog('from=fcpc_list_gz_Tingshi_')">不限</a>
+      <a rel='nofollow' href="/chuzu/j1/?final=3&key=%e5%a4%a9%e6%b2%b3" onClick="clickLog('from=fcpc_list_gz_Tingshi_j1')">一室</a>
+      <a rel='nofollow' href="/chuzu/j2/?final=3&key=%e5%a4%a9%e6%b2%b3" onClick="clickLog('from=fcpc_list_gz_Tingshi_j2')">两室</a>
+      <a rel='nofollow' href="/chuzu/j3/?final=3&key=%e5%a4%a9%e6%b2%b3" onClick="clickLog('from=fcpc_list_gz_Tingshi_j3')">三室</a>
+      <a rel='nofollow' href="/chuzu/j4/?final=3&key=%e5%a4%a9%e6%b2%b3" onClick="clickLog('from=fcpc_list_gz_Tingshi_j4')">四室</a>
+      <a rel='nofollow' href="/chuzu/j5/?final=3&key=%e5%a4%a9%e6%b2%b3" onClick="clickLog('from=fcpc_list_gz_Tingshi_j5')">四室以上</a> -->
+    </dd>
+  </dl>
 
-    <!-- 方式 -->
-    <dl class="secitem">
-      <dt>方式：</dt>
-      <dd id="secitem-type">
-        <a rel='nofollow' href="/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" class='select' onClick="clickLog('from=fcpc_list_gz_Fangshi_')">不限</a>
-        <a rel='nofollow' href="/zufang/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_Fangshi_zhengzu')">整套出租</a>
-        <a rel='nofollow' href="/hezu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_Fangshi_danjian')">单间出租</a>
-      </dd>
-    </dl>
+  <!-- 方式 -->
+  <!-- <dl class="secitem">
+    <dt>方式：</dt>
+    <dd id="secitem-type">
+      <a rel='nofollow' href="/chuzu/?final=3&key=%E5%A4%A9%E6%B2%B3" class='select' onClick="clickLog('from=fcpc_list_gz_Fangshi_')">不限</a>
+      <a rel='nofollow' href="/zufang/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_Fangshi_zhengzu')">整套出租</a>
+      <a rel='nofollow' href="/hezu/?final=3&key=%E5%A4%A9%E6%B2%B3" onClick="clickLog('from=fcpc_list_gz_Fangshi_danjian')">单间出租</a>
+    </dd>
+  </dl> -->
 
-    <!-- 其他 -->
-    <dl class="secitem">
-      <dt>其他：</dt>
-      <dd id="secitem-other">
-        <div class="moniselectcon">
-          <div class="moniselect">
-            <i></i> 朝向不限</div>
-          <div id="secitem-direction" class="moniselectList selectlist01">
-            <a href="/chuzu/" class='select'>朝向不限</a>
-            <a href="/chuzu/d1/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_toward_d1')">东 </a>
-            <a href="/chuzu/d2/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_toward_d2')">南 </a>
-            <a href="/chuzu/d3/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_toward_d3')">西 </a>
-            <a href="/chuzu/d4/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_toward_d4')">北 </a>
-            <a href="/chuzu/d5/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_toward_d5')">南北 </a>
-            <a href="/chuzu/d6/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_toward_d6')">东西 </a>
-            <a href="/chuzu/d7/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_toward_d7')">东南 </a>
-            <a href="/chuzu/d8/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_toward_d8')">西南 </a>
-            <a href="/chuzu/d9/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_toward_d9')">东北 </a>
-            <a href="/chuzu/d10/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_toward_d10')">西北 </a>
-          </div>
+  <!-- 其他 -->
+  <dl class="secitem">
+    <dt>其他：</dt>
+    <dd id="secitem-other">
+      <div class="moniselectcon">
+        <!-- <div class="moniselect">
+          <i></i> 朝向不限
+        </div> -->
+        <div id="secitem-direction" class="moniselectList selectlist01">
+          <a *ngFor="let item of directionData" (click)="searchConditions(null,null,item, null, null,null)">{{item}}</a>
+          <!-- <a href="/chuzu/" class='select'>朝向不限</a>
+          <a href="/chuzu/d1/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_toward_d1')">东 </a>
+          <a href="/chuzu/d2/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_toward_d2')">南 </a>
+          <a href="/chuzu/d3/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_toward_d3')">西 </a>
+          <a href="/chuzu/d4/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_toward_d4')">北 </a>
+          <a href="/chuzu/d5/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_toward_d5')">南北 </a>
+          <a href="/chuzu/d6/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_toward_d6')">东西 </a>
+          <a href="/chuzu/d7/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_toward_d7')">东南 </a>
+          <a href="/chuzu/d8/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_toward_d8')">西南 </a>
+          <a href="/chuzu/d9/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_toward_d9')">东北 </a>
+          <a href="/chuzu/d10/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_toward_d10')">西北 </a> -->
         </div>
-        <!-- moniselectcon -->
-        <div class="moniselectcon">
-          <div class="moniselect">
-            <i></i> 装修不限</div>
-          <div id="secitem-decoration" class="moniselectList selectlist02">
-            <a href="" class='select'>装修不限</a>
-            <a href="/chuzu/f1/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_Zhuangxiu_f1')">
-              <i></i>
-              毛坯 </a>
-            <a href="/chuzu/f2/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_Zhuangxiu_f2')">
-              <i></i>
-              简单装修 </a>
-            <a href="/chuzu/f3/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_Zhuangxiu_f3')">
-              <i></i>
-              中等装修 </a>
-            <a href="/chuzu/f4/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_Zhuangxiu_f4')">
-              <i></i>
-              精装修 </a>
-            <a href="/chuzu/f5/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_Zhuangxiu_f5')">
-              <i></i>
-              豪华装修 </a>
-          </div>
+      </div>
+      <!-- moniselectcon -->
+      <div class="moniselectcon">
+        <!-- <div class="moniselect">
+          <i></i> 装修不限</div> -->
+        <div id="secitem-decoration" class="moniselectList selectlist02">
+          <a *ngFor="let item of fitmentData" (click)="searchConditions(null,null, null,item, null,null)"></a>
+          <!-- <a href="" class='select'>装修不限</a>
+          <a href="/chuzu/f1/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_Zhuangxiu_f1')">
+            <i></i>
+            毛坯 </a>
+          <a href="/chuzu/f2/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_Zhuangxiu_f2')">
+            <i></i>
+            简单装修 </a>
+          <a href="/chuzu/f3/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_Zhuangxiu_f3')">
+            <i></i>
+            中等装修 </a>
+          <a href="/chuzu/f4/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_Zhuangxiu_f4')">
+            <i></i>
+            精装修 </a>
+          <a href="/chuzu/f5/?final=3&searchtype=1&key=%25u5929%25u6CB3" onClick="clickLog('from=fcpc_list_gz_Qita_Zhuangxiu_f5')">
+            <i></i>
+            豪华装修 </a> -->
         </div>
-        <!-- moniselectcon -->
-        <!-- <span id="secitem-has-pic" class="checkbox">
+        
+      </div>
+      <!-- moniselectcon -->
+      <!-- <span id="secitem-has-pic" class="checkbox">
           <a class="unchecked" href="javascript:;" name="" value="" id="ispic" onClick="clickLog('from=fcpc_list_gz_Qita_youtu')">
             <label for="ispic">只看有图</label>
           </a>
         </span> -->
-      </dd>
-    </dl>
+    </dd>
+  </dl>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <hr style="border:1px solid red">
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-8">
+      <!-- Custom Tabs -->
+      <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <a href="#tab_1" data-toggle="tab">广州出租</a>
+          </li>
+          <!-- <li>
+            <a href="#tab_2" data-toggle="tab">个人房源</a>
+          </li> -->
+          <li>
+              <button (click)="exportExcel()" class="btn btn-primary btn-block btn-flat">导出搜索结果</button>
+            <!-- <a href="#tab_3" data-toggle="tab">经纪人</a> -->
+          </li>
+
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="tab_1">
+            <div class="row house-item" *ngFor="let item of listData" (click)="showDetail(item)">
+              <div class="col-md-2">
+                <img [src]="server+'/'+item.photos[0].photo_path" class="img-responsive" style="height:110px;width:140px" alt="">
+
+              </div>
+              <div class="col-md-8">
+                <div>
+                  <a class="house-title">{{item.house_title}}</a>
+                  <br>
+                  <span class="house-content"> {{item.house_room}}室{{item.house_hall}}厅{{item.house_bathroom}}卫 {{item.house_area}}㎡</span>
+                  <br>
+                  <span class="house-content">{{item.house_block}}</span>
+                  <br>
+                  <span class="house-content">来自经纪人： {{item.house_landlord}}</span>
+                </div>
+
+                <!-- <div class="row ">
+                          <div class="col-md-3" style="padding:0">
+                          </div>
+                          <div class="col-md-6 ">
+                          </div>
+                          
+                        </div> -->
+
+              </div>
+
+              <div class="col-md-2">
+                <span class="house-price">{{item.house_rental}}</span>
+                <span class="house-month">元/月</span>
+              </div>
+
+
+            </div>
+
+            <div class="box-footer clearfix">
+              <p class="pull-left">共{{pageData.total}}个 每页
+                <select [(ngModel)]="pageSize" (ngModelChange)="loadList(1)">
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select> 个</p>
+              <ul class="pagination pagination-sm no-margin pull-right">
+                <li (click)="changePage('pre',null)">
+                  <a>
+                    上一页
+                  </a>
+                </li>
+                <li *ngFor="let item of pages" (click)="changePage('page',item+1)" [class.active]="pageIndex === item+1">
+                  <a>
+                    {{item+1}}
+                  </a>
+                </li>
+                <li (click)="changePage('next',null)">
+                  <a>
+                    下一页
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- /.tab-pane -->
+          <!-- <div class="tab-pane" id="tab_2">
+            tab2
+          </div> -->
+          <!-- /.tab-pane -->
+          <!-- <div class="tab-pane" id="tab_3">
+            ab3t
+          </div> -->
+          <!-- /.tab-pane -->
+        </div>
+        <!-- /.tab-content -->
+      </div>
+      <!-- nav-tabs-custom -->
+
+
+
+
+
+
+
+
+    </div>
+    <div class="col-md-2"></div>
   </div>
+
+        <div class="footer">
+          <div class="container">
+            <div class="row">
+              <hr class="divider">
+              <div class="col-md-3"></div>
+              <div class="col-md-6 text-center" style="margin-top:50px;">
+                  Copyright © 2018 颜梓煜. All rights reserved.
+              </div>
+              <div class="col-md-3"></div>
+            </div>
+          </div>
+        </div>
+</div>
+
+
+ <!-- 免费发布modal -->
+ <div class="modal fabu-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title text-center">提示</h4>
+      </div>
+      <div class="modal-body">
+      <p>
+        您当前为普通用户，如果要发布房源，请进行身份验证，待管理员审核后方可发布。点击确定按钮进行信息填写。
+      </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
+        <button (click)="goToTip()" type="button" class="btn btn-primary">确定</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 免费发布modal end -->

@@ -4,14 +4,21 @@
 @import "../node_modules/admin-lte/plugins/pace/pace.css";
 @import "../node_modules/admin-lte/dist/css/AdminLTE.css";
 @import "../node_modules/font-awesome/css/font-awesome.css";
-@import "../node_modules/admin-lte/plugins/datatables/dataTables.bootstrap.css";
 @import "../node_modules/admin-lte/plugins/iCheck/square/blue.css";
+@import "../node_modules/quill/dist/quill.snow.css";
+@import "../node_modules/swiper/dist/css/swiper.min.css";
 
+.divider{
+    margin:0 20px;
+    border-top:1px solid #a90000;
+}
 .table-scroll-content {
     width: 100%;
     overflow: auto;
 }
-
+.login-page, .register-page{
+    background-color: white;
+}
 .table-keep-line {
     word-break: keep-all;
     white-space: nowrap;
@@ -24,3 +31,8 @@
         text-align: center !important;
     }
 }
+
+// .login-bg{
+//     background-image: url('/src/assets/reg-bg.png');
+//     background-size: cover;
+// }

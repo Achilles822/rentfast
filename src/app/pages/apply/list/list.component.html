@@ -1,0 +1,57 @@
+<div class="box">
+    <div class="box-header">
+      <h3 class="box-title">用户需求查看</h3>
+      <!-- <button class="btn btn-primary pull-right" (click)="editProduct(null)">新增</button> -->
+      <!-- <button class="btn btn-primary pull-right" (click)="addProduct(null)">新增房源</button> -->
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <table class="table table-bordered">
+        <tr>
+          <th>用户名</th>
+          <th>真实姓名</th>
+          <th>身份证号码</th>
+          <th>操作</th>
+        </tr>
+        <tr *ngFor="let item of userList">
+          <td>{{item.user_name}}</td>
+          <td>{{item.person_realname}}</td>
+          <td>{{item.person_id}}</td>
+          <td>
+            <button class="btn btn-primary" (click)="checkId(item)">
+              审核
+            </button>
+          </td>
+        </tr>
+      </table>
+  
+      <div class="box-footer clearfix">
+        <p class="pull-left">共{{pageData.total}}个 每页
+          <select [(ngModel)]="pageSize" (ngModelChange)="loadList(1)">
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select> 个</p>
+        <ul class="pagination pagination-sm no-margin pull-right">
+          <li (click)="changePage('pre',null)">
+            <a>
+              上一页
+            </a>
+          </li>
+          <li *ngFor="let item of pages" (click)="changePage('page',item+1)" [class.active]="pageIndex === item+1">
+            <a>
+              {{item+1}}
+            </a>
+          </li>
+          <li (click)="changePage('next',null)">
+            <a>
+              下一页
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  

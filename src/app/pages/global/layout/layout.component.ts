@@ -21,6 +21,38 @@ export class LayoutComponent implements OnInit {
 
   constructor(public router: Router) {
     this.user = JSON.parse(sessionStorage.getItem('user'));
+    if (this.user.role == 'admin') {
+      this.sidebarLinks = [
+        {
+          'title': '房源管理',
+          'icon': 'area-chart',
+          'link': ['/pages/products/list']
+        },
+        {
+          'title': '账户管理',
+          'icon': 'calendar-minus-o',
+          'link': ['/pages/accounts/list']
+        },
+        {
+          'title': '用户需求查看',
+          'icon': 'calendar-minus-o',
+          'link': ['/pages/needs/list']
+        },
+        {
+          'title': '房东权限申请',
+          'icon': 'calendar-minus-o',
+          'link': ['/pages/apply/list']
+        }
+      ];
+    } else if (this.user.role == 'landlord') {
+      this.sidebarLinks = [
+        {
+          'title': '房源管理',
+          'icon': 'area-chart',
+          'link': ['/pages/products/list']
+        }
+      ];
+    }
     this.router.events.subscribe((evt: NavigationEnd) => {
       this.currentUrl = evt.url;
     });
@@ -61,22 +93,6 @@ export class LayoutComponent implements OnInit {
     // 	'external': true,
     // 	'target': '_blank'
     // }
-    this.sidebarLinks = [
-      {
-        'title': '商品管理',
-        'icon': 'area-chart',
-        'link': ['/pages/products/list']
-      },
-      {
-        'title': '订单管理',
-        'icon': 'file-text-o',
-        'link': ['/pages/briefing/list']
-      },
-      {
-        'title': '账户管理',
-        'icon': 'calendar-minus-o',
-        'link': ['/pages/situation/list']
-      }
-    ];
+
   }
 }

@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "vege-admin"
+    "name": "rentfast-frontend"
   },
   "apps": [
     {
@@ -26,8 +26,8 @@
         "../node_modules/admin-lte/bootstrap/js/bootstrap.js",
         "../node_modules/admin-lte/plugins/iCheck/icheck.min.js",
         "../node_modules/urijs/src/URI.js",
-        "../node_modules/admin-lte/plugins/slimScroll/jquery.slimscroll.js",
-        "../node_modules/sweetalert/dist/sweetalert.min.js"
+        "../node_modules/sweetalert/dist/sweetalert.min.js",
+        "../node_modules/quill/dist/quill.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

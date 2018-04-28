@@ -1,0 +1,279 @@
+<div>
+  <nav class="navbar navbar-fixed-top my-navbar" role="navigation">
+    <div class="container-fluid" style="padding:0">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
+          <span class="sr-only">切换导航</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">闪租</a>
+      </div>
+      <div style="background-color:#a90000;color:aliceblue" class="collapse navbar-collapse" id="example-navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active">
+            <a *ngIf="user.username==''" href="/login">登录</a>
+            <a *ngIf="user.username!==''">您好，{{user.username}}</a>
+          </li>
+          <li>
+            <a (click)="logOut()" *ngIf="user.username!==''" href="/login/">退出</a>
+            <a *ngIf="user.username==''" href="/login/register">注册</a>
+          </li>
+          <!-- <li>
+              <a href="#">
+                <span class="btn-free-publish">免费发布</span>
+              </a>
+            </li> -->
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<div style="margin-top:70px;margin-left:25px;display:flex;justify-content:space-between">
+
+  <div class="logo" style="margin-left:110px;">
+    <img src="../../../../assets/images/logo.png">
+    <!-- <h3>闪租·房源详情</h3> -->
+  </div>
+  <div>
+    <button (click)="showFabu()" class="btn-publish">
+      免费发布</button>
+  </div>
+
+</div>
+<div class="container" style="margin-top:50px;">
+  <div class="row">
+    <!-- <div class="col-md-1"><span>ssdsdsd</span></div> -->
+    <!-- <div class="col-md-10">
+        <div class="row"> -->
+    <div class="col-md-12">
+      <h4>{{listData.house_title}}</h4>
+    </div>
+    <div class="col-md-4">
+
+      <ngx-carousel class="banner" [inputs]="carouselBanner" (carouselLoad)="carouselBannerLoad()">
+        <ngx-item NgxCarouselItem *ngFor="let tile of carouselBannerItems; let i = index;">
+          <div class="bannerStyle" [style.background]="'url(' + tile + ')'">
+            <h1>{{i}}</h1>
+          </div>
+        </ngx-item>
+        <button NgxCarouselPrev class="leftRs">&lt;</button>
+        <button NgxCarouselNext class="rightRs">&gt;</button>
+      </ngx-carousel>
+
+
+
+
+
+
+
+
+
+      <!-- <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="height:380px;width:460px;">
+                  <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
+                  </ol>
+                  <div class="carousel-inner">
+                    <div class="item" *ngFor="let item of photoData">
+                      <img [src]="server+'/'+item.photo_path" alt="First slide">
+  
+                      <div class="carousel-caption">
+                       
+                      </div>
+                    </div>
+
+                  </div>
+                  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                    <span class="fa fa-angle-left"></span>
+                  </a>
+                  <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                    <span class="fa fa-angle-right"></span>
+                  </a>
+                </div> -->
+    </div>
+    <div class="col-md-4 col-md-offset-1" style="margin:0">
+      <span class="house-price">{{listData.house_rental}}</span>
+      <span class="house-month">元/月</span>
+      <span class="house-pay-way">押一付三</span>
+      <br>
+
+
+
+
+
+
+      <div class="desc-item">
+        <ul>
+          <li>租赁方式：
+            <span>整租</span>
+            <br>
+          </li>
+          <li>房屋类型：
+            <span>{{listData.house_room}}室{{listData.house_hall}}厅{{listData.house_bathroom}}卫 {{listData.house_area}} 平 {{listData.house_fitment}}</span>
+            <br>
+          </li>
+          <li>朝向楼层：
+            <span>南北 低层/共28层</span>
+            <br>
+          </li>
+          <!-- <li>所在小区：
+            <span>南沙珠江湾 (在租 211套 | 在售 1284 套)</span>
+            <br>
+          </li> -->
+          <li>所属区域：
+            <span>{{listData.house_block}}</span>
+            <br>
+          </li>
+          <!-- <li>详细地址：
+            <span>南沙旧镇南沙珠江湾</span>
+          </li> -->
+        </ul>
+      </div>
+
+      <div class="house-chat-phone">
+        <span>
+          <i class="iconfont icon-dianhua"></i> 13800138000</span>
+      </div>
+
+
+
+
+
+
+    </div>
+    <div class="col-md-3" style="left:5%">
+      <img class="img-responsive" style="border-radius:50%;width:50%" src="../../../../assets/images/avatar5.png" alt="">
+      <span class="house-manager">{{listData.house_landlord}}</span>
+      <br>
+      <span>古格地产 1年</span>
+      <br>
+      <span>进入他的店铺 他的信用记录</span>
+      <div class="house-wanting" style="margin-top:85px">
+        <span (click)="showYiXiang()">
+          <i class="iconfont icon-sheng"></i> 我有意向</span>
+      </div>
+    </div>
+    <!-- </div>
+      </div> -->
+    <!-- <div class="col-md-1">dsdsds</div> -->
+  </div>
+
+  <div class="row" style="margin-top:40px;">
+    <div class="col-md-5" *ngFor="let item of photoData">
+      <img [src]="server+'/'+item.photo_path" class="img-responsive">
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="house-p" [innerHTML]="listData.house_description | bypassSecurityTrustHtml">
+        <!-- {{listData.house_description}} -->
+      </div>
+
+    </div>
+    <div class="col-md-4">
+
+      <h6>您可能喜欢这些房子：</h6>
+
+      <div *ngFor="let item of mayLoveList">
+        <div (click)="showDetail(item)">
+          <img class="img-responsive" style="width:70%" [src]="server+'/'+item.photos[0].photo_path">
+          <h5>{{item.house_title}}</h5>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="row">
+        <hr class="divider">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 text-center" style="margin:30px auto;">
+          Copyright © 2018 颜梓煜. All rights reserved.
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- 我有意向modal -->
+<div class="modal yixiang-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">意向登记</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="col-lg-2 text-right">姓名</label>
+            <div class="col-lg-3">
+              <input class="form-control form-fields" name="username" [(ngModel)]="willInfo.username" type="text">
+            </div>
+            <label class="col-lg-2 text-right">手机号码</label>
+            <div class="col-lg-4">
+              <input class="form-control form-fields" name="mobile" [(ngModel)]="willInfo.mobile" type="text">
+            </div>
+
+          </div>
+          <div class="form-group">
+            <label class="col-lg-2 text-right">邮箱</label>
+            <div class="col-lg-4">
+              <input class="form-control form-fields" name="email" [(ngModel)]="willInfo.email" type="text">
+            </div>
+            <label class="col-lg-2 text-right">意向租金</label>
+            <div class="col-lg-4">
+              <input class="form-control form-fields" name="rental" [(ngModel)]="willInfo.want_rental" type="text">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" (click)="saveYiXiang()">保存</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- 我有意向modal end -->
+<!-- 免费发布modal -->
+<div class="modal fabu-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title text-center">提示</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          您当前为普通用户，如果要发布房源，请进行身份验证，待管理员审核后方可发布。点击确定按钮进行信息填写。
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
+        <button (click)="goToTip()" type="button" class="btn btn-primary">确定</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- 免费发布modal end -->

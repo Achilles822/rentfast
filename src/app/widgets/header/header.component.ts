@@ -24,5 +24,9 @@ export class AppHeaderComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  logout(){
+    sessionStorage.removeItem('user');
+    this.router.navigateByUrl('/');
+    
+  }
 }
